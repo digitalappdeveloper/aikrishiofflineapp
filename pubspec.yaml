@@ -157,7 +157,8 @@ flutter:
     - assets/rive_animations/
     - assets/pdfs/
     - assets/jsons/
-
+   - assets/tflite/plant_model.tflite
+    - assets/tflite/labels.txt
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
