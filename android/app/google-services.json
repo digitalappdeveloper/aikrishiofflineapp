@@ -1,0 +1,550 @@
+{
+  "project_info": {
+    "project_number": "868360876651",
+    "project_id": "smartchat123",
+    "storage_bucket": "smartchat123.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868360876651:android:ad23a8d648fc8b51f4372e",
+        "android_client_info": {
+          "package_name": "com.aismart.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868360876651-rfq6q8u1nsiidsc0m6a9l8p6320os5tg.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aismart.com",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATI-yQc8jKiD4Xn_wvSIMgCRFYvjZLj60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "868360876651-2nq4vpjp0upu4od0199tj4g2ed53tpfd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.filmindustry"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868360876651:android:215072d65f85a5fdf4372e",
+        "android_client_info": {
+          "package_name": "com.aismartchat.comapny"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868360876651-flpd1qtecf742343augmgk3t1031ncht.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aismartchat.comapny",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATI-yQc8jKiD4Xn_wvSIMgCRFYvjZLj60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "868360876651-2nq4vpjp0upu4od0199tj4g2ed53tpfd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.filmindustry"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868360876651:android:8c8e0a14cadfa010f4372e",
+        "android_client_info": {
+          "package_name": "com.aismartchat.company"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868360876651-is03nqlskedod7ncesor0qkl5d7o22j2.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.aismartchat.company",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATI-yQc8jKiD4Xn_wvSIMgCRFYvjZLj60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "868360876651-2nq4vpjp0upu4od0199tj4g2ed53tpfd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.filmindustry"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868360876651:android:e371460f352f11d6f4372e",
+        "android_client_info": {
+          "package_name": "com.mycompany.aichat"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATI-yQc8jKiD4Xn_wvSIMgCRFYvjZLj60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "868360876651-2nq4vpjp0upu4od0199tj4g2ed53tpfd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.filmindustry"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868360876651:android:4d5bc9510a57c471f4372e",
+        "android_client_info": {
+          "package_name": "com.mycompany.aiichatgeinixx"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868360876651-0oflvg163jm70863eo36fgudijpd26r8.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.aiichatgeinixx",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATI-yQc8jKiD4Xn_wvSIMgCRFYvjZLj60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "868360876651-2nq4vpjp0upu4od0199tj4g2ed53tpfd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.filmindustry"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868360876651:android:2a9e087c8f1fa225f4372e",
+        "android_client_info": {
+          "package_name": "com.mycompany.aikrishi"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868360876651-e774s7fhuhr0h9khkvud6b56lua7ughe.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.aikrishi",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATI-yQc8jKiD4Xn_wvSIMgCRFYvjZLj60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "868360876651-2nq4vpjp0upu4od0199tj4g2ed53tpfd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.filmindustry"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868360876651:android:f1aaf26b3d7ce512f4372e",
+        "android_client_info": {
+          "package_name": "com.mycompany.assistance"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATI-yQc8jKiD4Xn_wvSIMgCRFYvjZLj60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "868360876651-2nq4vpjp0upu4od0199tj4g2ed53tpfd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.filmindustry"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868360876651:android:efbe593b8ac09cb8f4372e",
+        "android_client_info": {
+          "package_name": "com.mycompany.assistent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868360876651-25ptv2esp5qhh7ias1lui3svb4t224ab.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.assistent",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATI-yQc8jKiD4Xn_wvSIMgCRFYvjZLj60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "868360876651-2nq4vpjp0upu4od0199tj4g2ed53tpfd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.filmindustry"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868360876651:android:0cb307f6db0ad1eff4372e",
+        "android_client_info": {
+          "package_name": "com.mycompany.cricketerchattapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868360876651-gqlac1248nekj36c4qqlubp1f98f0p17.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.cricketerchattapp",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATI-yQc8jKiD4Xn_wvSIMgCRFYvjZLj60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "868360876651-2nq4vpjp0upu4od0199tj4g2ed53tpfd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.filmindustry"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868360876651:android:832fa51fa9e60de6f4372e",
+        "android_client_info": {
+          "package_name": "com.mycompany.ecommerce"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATI-yQc8jKiD4Xn_wvSIMgCRFYvjZLj60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "868360876651-2nq4vpjp0upu4od0199tj4g2ed53tpfd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.filmindustry"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868360876651:android:fff257f38b5672eff4372e",
+        "android_client_info": {
+          "package_name": "com.mycompany.filmindustry"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868360876651-nu4d1qokdrq5bsru0ura8fcapqg0qg7g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.filmindustry",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATI-yQc8jKiD4Xn_wvSIMgCRFYvjZLj60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "868360876651-2nq4vpjp0upu4od0199tj4g2ed53tpfd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.filmindustry"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868360876651:android:29adc1dc2cdf4cd7f4372e",
+        "android_client_info": {
+          "package_name": "com.mycompany.smart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868360876651-0a92and5mbg1nhl3cfpr7ikdk2pb0u6a.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.smart",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATI-yQc8jKiD4Xn_wvSIMgCRFYvjZLj60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "868360876651-2nq4vpjp0upu4od0199tj4g2ed53tpfd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.filmindustry"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:868360876651:android:ef1bf9ec29c9aba7f4372e",
+        "android_client_info": {
+          "package_name": "mla.simdega.com"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyATI-yQc8jKiD4Xn_wvSIMgCRFYvjZLj60"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "868360876651-lkd8e0s96qv6opm3bmmggh9bbr2842ui.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "868360876651-2nq4vpjp0upu4od0199tj4g2ed53tpfd.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.filmindustry"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
