@@ -7,8 +7,8 @@ import '/index.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'government_schemes_model.dart';
-export 'government_schemes_model.dart';
+import 'government_schemesduplicate_model.dart';
+export 'government_schemesduplicate_model.dart';
 
 /// Design a "Government Schemes" page using a Vertical List of elegant Cards.
 ///
@@ -16,26 +16,27 @@ export 'government_schemes_model.dart';
 /// Title (e.g., PM Kisan), and a short 2-line description. Include a "Read
 /// More" button that opens a detail view. The background should be soft green
 /// or white for better readability.
-class GovernmentSchemesWidget extends StatefulWidget {
-  const GovernmentSchemesWidget({super.key});
+class GovernmentSchemesduplicateWidget extends StatefulWidget {
+  const GovernmentSchemesduplicateWidget({super.key});
 
-  static String routeName = 'GovernmentSchemes';
-  static String routePath = '/governmentSchemes';
+  static String routeName = 'GovernmentSchemesduplicate';
+  static String routePath = '/governmentSchemesduplicate';
 
   @override
-  State<GovernmentSchemesWidget> createState() =>
-      _GovernmentSchemesWidgetState();
+  State<GovernmentSchemesduplicateWidget> createState() =>
+      _GovernmentSchemesduplicateWidgetState();
 }
 
-class _GovernmentSchemesWidgetState extends State<GovernmentSchemesWidget> {
-  late GovernmentSchemesModel _model;
+class _GovernmentSchemesduplicateWidgetState
+    extends State<GovernmentSchemesduplicateWidget> {
+  late GovernmentSchemesduplicateModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => GovernmentSchemesModel());
+    _model = createModel(context, () => GovernmentSchemesduplicateModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -98,7 +99,7 @@ class _GovernmentSchemesWidgetState extends State<GovernmentSchemesWidget> {
                   hoverColor: Colors.transparent,
                   highlightColor: Colors.transparent,
                   onTap: () async {
-                    context.pushNamed(FarmerfriendlyWidget.routeName);
+                    context.pushNamed(DashbordWidget.routeName);
                   },
                   child: Icon(
                     Icons.arrow_back_sharp,

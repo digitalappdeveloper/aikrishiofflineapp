@@ -7,8 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'farmerfriendly_model.dart';
-export 'farmerfriendly_model.dart';
+import 'dashbord_model.dart';
+export 'dashbord_model.dart';
 
 /// ate a clean, farmer-friendly Dashboard.
 ///
@@ -18,18 +18,18 @@ export 'farmerfriendly_model.dart';
 /// "Market Rates (Mandi Bhav)", 3. "Govt Schemes (Yojna)", 4. "Expert Help
 /// (Kisan Salah)". Use high-contrast colors and a simple bottom navigation
 /// bar.
-class FarmerfriendlyWidget extends StatefulWidget {
-  const FarmerfriendlyWidget({super.key});
+class DashbordWidget extends StatefulWidget {
+  const DashbordWidget({super.key});
 
-  static String routeName = 'farmerfriendly';
-  static String routePath = '/farmerfriendly';
+  static String routeName = 'dashbord';
+  static String routePath = '/dashbord';
 
   @override
-  State<FarmerfriendlyWidget> createState() => _FarmerfriendlyWidgetState();
+  State<DashbordWidget> createState() => _DashbordWidgetState();
 }
 
-class _FarmerfriendlyWidgetState extends State<FarmerfriendlyWidget> {
-  late FarmerfriendlyModel _model;
+class _DashbordWidgetState extends State<DashbordWidget> {
+  late DashbordModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   LatLng? currentUserLocationValue;
@@ -37,7 +37,7 @@ class _FarmerfriendlyWidgetState extends State<FarmerfriendlyWidget> {
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => FarmerfriendlyModel());
+    _model = createModel(context, () => DashbordModel());
 
     // On page load action.
     SchedulerBinding.instance.addPostFrameCallback((_) async {
@@ -608,7 +608,7 @@ class _FarmerfriendlyWidgetState extends State<FarmerfriendlyWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          context.pushNamed(AIScanningpageWidget.routeName);
+                          context.pushNamed(ScannerWidget.routeName);
                         },
                         child: Container(
                           width: double.infinity,
@@ -766,8 +766,7 @@ class _FarmerfriendlyWidgetState extends State<FarmerfriendlyWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          context
-                              .pushNamed(MarketRateslistpageWidget.routeName);
+                          context.pushNamed(MandibhavWidget.routeName);
                         },
                         child: Container(
                           width: double.infinity,
@@ -925,7 +924,7 @@ class _FarmerfriendlyWidgetState extends State<FarmerfriendlyWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          context.pushNamed(GovernmentSchemesWidget.routeName);
+                          context.pushNamed(SakariyojnaWidget.routeName);
                         },
                         child: Container(
                           width: double.infinity,
@@ -1083,8 +1082,7 @@ class _FarmerfriendlyWidgetState extends State<FarmerfriendlyWidget> {
                         hoverColor: Colors.transparent,
                         highlightColor: Colors.transparent,
                         onTap: () async {
-                          context
-                              .pushNamed(SimpleChatInterfaceWidget.routeName);
+                          context.pushNamed(ChatWidget.routeName);
                         },
                         child: Container(
                           width: double.infinity,
@@ -1391,222 +1389,6 @@ class _FarmerfriendlyWidgetState extends State<FarmerfriendlyWidget> {
                         )
                       ],
                       borderRadius: BorderRadius.circular(20.0),
-                    ),
-                    child: Padding(
-                      padding: EdgeInsets.all(16.0),
-                      child: Column(
-                        mainAxisSize: MainAxisSize.max,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'हाल की गतिविधि • Recent Activity',
-                            style: FlutterFlowTheme.of(context)
-                                .titleSmall
-                                .override(
-                                  font: GoogleFonts.interTight(
-                                    fontWeight: FontWeight.bold,
-                                    fontStyle: FlutterFlowTheme.of(context)
-                                        .titleSmall
-                                        .fontStyle,
-                                  ),
-                                  color: Color(0xFF2E7D32),
-                                  letterSpacing: 0.0,
-                                  fontWeight: FontWeight.bold,
-                                  fontStyle: FlutterFlowTheme.of(context)
-                                      .titleSmall
-                                      .fontStyle,
-                                ),
-                          ),
-                          Divider(
-                            height: 16.0,
-                            thickness: 1.0,
-                            color: Color(0xFFE8F5E9),
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 4.0, 0.0, 8.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Container(
-                                  width: 40.0,
-                                  height: 40.0,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFFFE0B2),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
-                                    child: Icon(
-                                      Icons.bug_report_rounded,
-                                      color: Color(0xFFFF6F00),
-                                      size: 20.0,
-                                    ),
-                                  ),
-                                ),
-                                Expanded(
-                                  child: Column(
-                                    mainAxisSize: MainAxisSize.max,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.start,
-                                    children: [
-                                      Text(
-                                        'टमाटर में पत्ती धब्बा रोग',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              font: GoogleFonts.inter(
-                                                fontWeight: FontWeight.w600,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                              color: Color(0xFF212121),
-                                              letterSpacing: 0.0,
-                                              fontWeight: FontWeight.w600,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                      Text(
-                                        'Tomato Leaf Spot detected • 2 days ago',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodySmall
-                                            .override(
-                                              font: GoogleFonts.inter(
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodySmall
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodySmall
-                                                        .fontStyle,
-                                              ),
-                                              color: Color(0xFF757575),
-                                              letterSpacing: 0.0,
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodySmall
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodySmall
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ].divide(SizedBox(width: 12.0)),
-                            ),
-                          ),
-                          Icon(
-                            Icons.check_circle_rounded,
-                            color: Colors.green,
-                            size: 20.0,
-                          ),
-                          Padding(
-                            padding: EdgeInsetsDirectional.fromSTEB(
-                                0.0, 4.0, 0.0, 0.0),
-                            child: Row(
-                              mainAxisSize: MainAxisSize.max,
-                              children: [
-                                Container(
-                                  width: 40.0,
-                                  height: 40.0,
-                                  decoration: BoxDecoration(
-                                    color: Color(0xFFE3F2FD),
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: Align(
-                                    alignment: AlignmentDirectional(0.0, 0.0),
-                                    child: Icon(
-                                      Icons.trending_up_rounded,
-                                      color: Color(0xFF1565C0),
-                                      size: 20.0,
-                                    ),
-                                  ),
-                                ),
-                                Column(
-                                  mainAxisSize: MainAxisSize.max,
-                                  crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
-                                    InkWell(
-                                      splashColor: Colors.transparent,
-                                      focusColor: Colors.transparent,
-                                      hoverColor: Colors.transparent,
-                                      highlightColor: Colors.transparent,
-                                      onDoubleTap: () async {
-                                        _model.apiResult4mfscan =
-                                            await WeatherAPICall.call();
-
-                                        if ((_model
-                                                .apiResult4mfscan?.succeeded ??
-                                            true)) {
-                                          FFAppState().recentScans =
-                                              FFAppState().recentScans;
-                                          safeSetState(() {});
-                                        } else {
-                                          ScaffoldMessenger.of(context)
-                                              .showSnackBar(
-                                            SnackBar(
-                                              content: Text(
-                                                'scan kare',
-                                                style: TextStyle(
-                                                  color: FlutterFlowTheme.of(
-                                                          context)
-                                                      .primaryText,
-                                                ),
-                                              ),
-                                              duration:
-                                                  Duration(milliseconds: 4000),
-                                              backgroundColor:
-                                                  FlutterFlowTheme.of(context)
-                                                      .secondary,
-                                            ),
-                                          );
-                                        }
-
-                                        safeSetState(() {});
-                                      },
-                                      child: Text(
-                                        'Hello World',
-                                        style: FlutterFlowTheme.of(context)
-                                            .bodyMedium
-                                            .override(
-                                              font: GoogleFonts.inter(
-                                                fontWeight:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontWeight,
-                                                fontStyle:
-                                                    FlutterFlowTheme.of(context)
-                                                        .bodyMedium
-                                                        .fontStyle,
-                                              ),
-                                              letterSpacing: 0.0,
-                                              fontWeight:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontWeight,
-                                              fontStyle:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .fontStyle,
-                                            ),
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                              ].divide(SizedBox(width: 12.0)),
-                            ),
-                          ),
-                        ],
-                      ),
                     ),
                   ),
                 ),

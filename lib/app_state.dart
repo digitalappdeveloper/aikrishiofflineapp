@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'flutter_flow/flutter_flow_util.dart';
-import 'dart:convert';
 
 class FFAppState extends ChangeNotifier {
   static FFAppState _instance = FFAppState._internal();
@@ -16,12 +17,31 @@ class FFAppState extends ChangeNotifier {
     _instance = FFAppState._internal();
   }
 
-  Future initializePersistedState() async {}
+  Future initializePersistedState() async {
+    prefs = await SharedPreferences.getInstance();
+    _safeInit(() {
+      _chatMessages = prefs
+              .getStringList('ff_chatMessages')
+              ?.map((x) {
+                try {
+                  return ChatMessageStruct.fromSerializableMap(jsonDecode(x));
+                } catch (e) {
+                  print("Can't decode persisted data type. Error: $e.");
+                  return null;
+                }
+              })
+              .withoutNulls
+              .toList() ??
+          _chatMessages;
+    });
+  }
 
   void update(VoidCallback callback) {
     callback();
     notifyListeners();
   }
+
+  late SharedPreferences prefs;
 
   String _lastScanImage = '';
   String get lastScanImage => _lastScanImage;
@@ -116,4 +136,87 @@ class FFAppState extends ChangeNotifier {
   void insertAtIndexInChatHistoryyy(int index, ChatMessageStruct value) {
     chatHistoryyy.insert(index, value);
   }
+
+  bool _isModelLoaded = false;
+  bool get isModelLoaded => _isModelLoaded;
+  set isModelLoaded(bool value) {
+    _isModelLoaded = value;
+  }
+
+  String _hindiVoice = '';
+  String get hindiVoice => _hindiVoice;
+  set hindiVoice(String value) {
+    _hindiVoice = value;
+  }
+
+  List<ChatMessageStruct> _chatMessages = [];
+  List<ChatMessageStruct> get chatMessages => _chatMessages;
+  set chatMessages(List<ChatMessageStruct> value) {
+    _chatMessages = value;
+    prefs.setStringList(
+        'ff_chatMessages', value.map((x) => x.serialize()).toList());
+  }
+
+  void addToChatMessages(ChatMessageStruct value) {
+    chatMessages.add(value);
+    prefs.setStringList(
+        'ff_chatMessages', _chatMessages.map((x) => x.serialize()).toList());
+  }
+
+  void removeFromChatMessages(ChatMessageStruct value) {
+    chatMessages.remove(value);
+    prefs.setStringList(
+        'ff_chatMessages', _chatMessages.map((x) => x.serialize()).toList());
+  }
+
+  void removeAtIndexFromChatMessages(int index) {
+    chatMessages.removeAt(index);
+    prefs.setStringList(
+        'ff_chatMessages', _chatMessages.map((x) => x.serialize()).toList());
+  }
+
+  void updateChatMessagesAtIndex(
+    int index,
+    ChatMessageStruct Function(ChatMessageStruct) updateFn,
+  ) {
+    chatMessages[index] = updateFn(_chatMessages[index]);
+    prefs.setStringList(
+        'ff_chatMessages', _chatMessages.map((x) => x.serialize()).toList());
+  }
+
+  void insertAtIndexInChatMessages(int index, ChatMessageStruct value) {
+    chatMessages.insert(index, value);
+    prefs.setStringList(
+        'ff_chatMessages', _chatMessages.map((x) => x.serialize()).toList());
+  }
+
+  String _airesponse = '';
+  String get airesponse => _airesponse;
+  set airesponse(String value) {
+    _airesponse = value;
+  }
+
+  bool _isLoading = false;
+  bool get isLoading => _isLoading;
+  set isLoading(bool value) {
+    _isLoading = value;
+  }
+
+  String _conversionId = '';
+  String get conversionId => _conversionId;
+  set conversionId(String value) {
+    _conversionId = value;
+  }
+}
+
+void _safeInit(Function() initializeField) {
+  try {
+    initializeField();
+  } catch (_) {}
+}
+
+Future _safeInitAsync(Function() initializeField) async {
+  try {
+    await initializeField();
+  } catch (_) {}
 }

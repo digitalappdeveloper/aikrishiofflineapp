@@ -4,12 +4,13 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/custom_code/actions/index.dart' as actions;
-import '/index.dart';
+import 'package:easy_debounce/easy_debounce.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_markdown/flutter_markdown.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:provider/provider.dart';
-import 'simple_chat_interface_model.dart';
-export 'simple_chat_interface_model.dart';
+import 'chat_model.dart';
+export 'chat_model.dart';
 
 /// Build a simple Chat Interface.
 ///
@@ -17,28 +18,27 @@ export 'simple_chat_interface_model.dart';
 /// with clear fonts. At the bottom, a text input field but most importantly,
 /// a large "Microphone" icon for Voice-to-Text input, as farmers prefer
 /// speaking over typing. Use a friendly bot avatar for AI responses.
-class SimpleChatInterfaceWidget extends StatefulWidget {
-  const SimpleChatInterfaceWidget({super.key});
+class ChatWidget extends StatefulWidget {
+  const ChatWidget({super.key});
 
-  static String routeName = 'simpleChatInterface';
-  static String routePath = '/simpleChatInterface';
+  static String routeName = 'chat';
+  static String routePath = '/chat';
 
   @override
-  State<SimpleChatInterfaceWidget> createState() =>
-      _SimpleChatInterfaceWidgetState();
+  State<ChatWidget> createState() => _ChatWidgetState();
 }
 
-class _SimpleChatInterfaceWidgetState extends State<SimpleChatInterfaceWidget> {
-  late SimpleChatInterfaceModel _model;
+class _ChatWidgetState extends State<ChatWidget> {
+  late ChatModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => SimpleChatInterfaceModel());
+    _model = createModel(context, () => ChatModel());
 
-    _model.textController ??= TextEditingController();
+    _model.textController ??= TextEditingController(text: _model.chatInputText);
     _model.textFieldFocusNode ??= FocusNode();
   }
 
@@ -65,18 +65,19 @@ class _SimpleChatInterfaceWidgetState extends State<SimpleChatInterfaceWidget> {
           backgroundColor: Colors.green,
           automaticallyImplyLeading: false,
           leading: Padding(
-            padding: EdgeInsetsDirectional.fromSTEB(20.0, 0.0, 0.0, 0.0),
+            padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
             child: FlutterFlowIconButton(
-              borderRadius: 8.0,
-              buttonSize: 0.0,
-              fillColor: Color(0xFF2CBD08),
+              borderColor: Colors.transparent,
+              borderRadius: 22.0,
+              borderWidth: 0.0,
+              buttonSize: 44.0,
               icon: Icon(
-                Icons.arrow_back,
-                color: Color(0xFD110672),
-                size: 24.0,
+                Icons.arrow_back_sharp,
+                color: Colors.white,
+                size: 26.0,
               ),
-              onPressed: () async {
-                context.pushNamed(FarmerfriendlyWidget.routeName);
+              onPressed: () {
+                print('IconButton pressed ...');
               },
             ),
           ),
@@ -168,25 +169,7 @@ class _SimpleChatInterfaceWidgetState extends State<SimpleChatInterfaceWidget> {
               ].divide(SizedBox(width: 12.0)),
             ),
           ),
-          actions: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(8.0, 0.0, 8.0, 0.0),
-              child: FlutterFlowIconButton(
-                borderColor: Colors.transparent,
-                borderRadius: 22.0,
-                borderWidth: 0.0,
-                buttonSize: 44.0,
-                icon: Icon(
-                  Icons.more_vert,
-                  color: Colors.white,
-                  size: 26.0,
-                ),
-                onPressed: () {
-                  print('IconButton pressed ...');
-                },
-              ),
-            ),
-          ],
+          actions: [],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -201,20 +184,20 @@ class _SimpleChatInterfaceWidgetState extends State<SimpleChatInterfaceWidget> {
                       EdgeInsetsDirectional.fromSTEB(16.0, 16.0, 16.0, 16.0),
                   child: Builder(
                     builder: (context) {
-                      final chatItem = FFAppState().chatHistoryyy.toList();
+                      final chats = FFAppState().chatMessages.toList();
 
                       return ListView.builder(
                         padding: EdgeInsets.zero,
                         shrinkWrap: true,
                         scrollDirection: Axis.vertical,
-                        itemCount: chatItem.length,
-                        itemBuilder: (context, chatItemIndex) {
-                          final chatItemItem = chatItem[chatItemIndex];
-                          return Column(
-                            mainAxisSize: MainAxisSize.max,
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              if (chatItemItem.createdBy == 'AI')
+                        itemCount: chats.length,
+                        itemBuilder: (context, chatsIndex) {
+                          final chatsItem = chats[chatsIndex];
+                          return SingleChildScrollView(
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
                                   crossAxisAlignment: CrossAxisAlignment.end,
@@ -300,66 +283,58 @@ class _SimpleChatInterfaceWidgetState extends State<SimpleChatInterfaceWidget> {
                                         borderRadius:
                                             BorderRadius.circular(18.0),
                                       ),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 12.0, 16.0, 12.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.start,
-                                          children: [
-                                            Text(
-                                              valueOrDefault<String>(
-                                                chatItemItem.message,
-                                                'AI response',
+                                      child: Visibility(
+                                        visible: chatsItem.createdBy == 'user',
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 12.0, 16.0, 12.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.start,
+                                            children: [
+                                              Expanded(
+                                                child: MarkdownBody(
+                                                  data: valueOrDefault<String>(
+                                                    chatsItem.message,
+                                                    'bot',
+                                                  ),
+                                                  selectable: true,
+                                                  onTapLink: (_, url, __) =>
+                                                      launchURL(url!),
+                                                ),
                                               ),
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 4.0, 0.0, 0.0),
+                                                child: Text(
+                                                  dateTimeFormat("jm",
+                                                      getCurrentTimestamp),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodySmall
                                                       .override(
                                                         font: GoogleFonts.inter(
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyMedium
+                                                                  .bodySmall
                                                                   .fontWeight,
                                                           fontStyle:
                                                               FlutterFlowTheme.of(
                                                                       context)
-                                                                  .bodyMedium
+                                                                  .bodySmall
                                                                   .fontStyle,
                                                         ),
                                                         color:
-                                                            Color(0xFF1B1B1B),
-                                                        fontSize: 17.0,
+                                                            Color(0xFF9E9E9E),
+                                                        fontSize: 12.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                        lineHeight: 1.5,
-                                                      ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 4.0, 0.0, 0.0),
-                                              child: Text(
-                                                dateTimeFormat(
-                                                    "jm", getCurrentTimestamp),
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodySmall
-                                                    .override(
-                                                      font: GoogleFonts.inter(
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
                                                                 .bodySmall
                                                                 .fontWeight,
                                                         fontStyle:
@@ -368,29 +343,15 @@ class _SimpleChatInterfaceWidgetState extends State<SimpleChatInterfaceWidget> {
                                                                 .bodySmall
                                                                 .fontStyle,
                                                       ),
-                                                      color: Color(0xFF9E9E9E),
-                                                      fontSize: 12.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodySmall
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodySmall
-                                                              .fontStyle,
-                                                    ),
+                                                ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ].divide(SizedBox(width: 10.0)),
                                 ),
-                              if (chatItemItem.createdBy == 'kisan')
                                 Row(
                                   mainAxisSize: MainAxisSize.max,
                                   mainAxisAlignment: MainAxisAlignment.end,
@@ -417,21 +378,39 @@ class _SimpleChatInterfaceWidgetState extends State<SimpleChatInterfaceWidget> {
                                         borderRadius:
                                             BorderRadius.circular(18.0),
                                       ),
-                                      child: Padding(
-                                        padding: EdgeInsetsDirectional.fromSTEB(
-                                            16.0, 12.0, 16.0, 12.0),
-                                        child: Column(
-                                          mainAxisSize: MainAxisSize.max,
-                                          crossAxisAlignment:
-                                              CrossAxisAlignment.end,
-                                          children: [
-                                            Text(
-                                              chatItemItem.message,
-                                              style:
-                                                  FlutterFlowTheme.of(context)
-                                                      .bodyMedium
-                                                      .override(
-                                                        font: GoogleFonts.inter(
+                                      child: Visibility(
+                                        visible: chatsItem.createdBy == 'bot',
+                                        child: Padding(
+                                          padding:
+                                              EdgeInsetsDirectional.fromSTEB(
+                                                  16.0, 12.0, 16.0, 12.0),
+                                          child: Column(
+                                            mainAxisSize: MainAxisSize.max,
+                                            crossAxisAlignment:
+                                                CrossAxisAlignment.end,
+                                            children: [
+                                              Text(
+                                                chatsItem.message,
+                                                style:
+                                                    FlutterFlowTheme.of(context)
+                                                        .bodyMedium
+                                                        .override(
+                                                          font:
+                                                              GoogleFonts.inter(
+                                                            fontWeight:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontWeight,
+                                                            fontStyle:
+                                                                FlutterFlowTheme.of(
+                                                                        context)
+                                                                    .bodyMedium
+                                                                    .fontStyle,
+                                                          ),
+                                                          color: Colors.white,
+                                                          fontSize: 17.0,
+                                                          letterSpacing: 0.0,
                                                           fontWeight:
                                                               FlutterFlowTheme.of(
                                                                       context)
@@ -442,37 +421,39 @@ class _SimpleChatInterfaceWidgetState extends State<SimpleChatInterfaceWidget> {
                                                                       context)
                                                                   .bodyMedium
                                                                   .fontStyle,
+                                                          lineHeight: 1.5,
                                                         ),
-                                                        color: Colors.white,
-                                                        fontSize: 17.0,
+                                              ),
+                                              Padding(
+                                                padding: EdgeInsetsDirectional
+                                                    .fromSTEB(
+                                                        0.0, 4.0, 0.0, 0.0),
+                                                child: Text(
+                                                  dateTimeFormat("jm",
+                                                      getCurrentTimestamp),
+                                                  style: FlutterFlowTheme.of(
+                                                          context)
+                                                      .bodySmall
+                                                      .override(
+                                                        font: GoogleFonts.inter(
+                                                          fontWeight:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodySmall
+                                                                  .fontWeight,
+                                                          fontStyle:
+                                                              FlutterFlowTheme.of(
+                                                                      context)
+                                                                  .bodySmall
+                                                                  .fontStyle,
+                                                        ),
+                                                        color:
+                                                            Color(0xFFB9F6CA),
+                                                        fontSize: 12.0,
                                                         letterSpacing: 0.0,
                                                         fontWeight:
                                                             FlutterFlowTheme.of(
                                                                     context)
-                                                                .bodyMedium
-                                                                .fontWeight,
-                                                        fontStyle:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
-                                                                .bodyMedium
-                                                                .fontStyle,
-                                                        lineHeight: 1.5,
-                                                      ),
-                                            ),
-                                            Padding(
-                                              padding: EdgeInsetsDirectional
-                                                  .fromSTEB(0.0, 4.0, 0.0, 0.0),
-                                              child: Text(
-                                                dateTimeFormat(
-                                                    "jm", getCurrentTimestamp),
-                                                style: FlutterFlowTheme.of(
-                                                        context)
-                                                    .bodySmall
-                                                    .override(
-                                                      font: GoogleFonts.inter(
-                                                        fontWeight:
-                                                            FlutterFlowTheme.of(
-                                                                    context)
                                                                 .bodySmall
                                                                 .fontWeight,
                                                         fontStyle:
@@ -481,29 +462,17 @@ class _SimpleChatInterfaceWidgetState extends State<SimpleChatInterfaceWidget> {
                                                                 .bodySmall
                                                                 .fontStyle,
                                                       ),
-                                                      color: Color(0xFFB9F6CA),
-                                                      fontSize: 12.0,
-                                                      letterSpacing: 0.0,
-                                                      fontWeight:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodySmall
-                                                              .fontWeight,
-                                                      fontStyle:
-                                                          FlutterFlowTheme.of(
-                                                                  context)
-                                                              .bodySmall
-                                                              .fontStyle,
-                                                    ),
+                                                ),
                                               ),
-                                            ),
-                                          ],
+                                            ],
+                                          ),
                                         ),
                                       ),
                                     ),
                                   ].divide(SizedBox(width: 10.0)),
                                 ),
-                            ].divide(SizedBox(height: 16.0)),
+                              ].divide(SizedBox(height: 16.0)),
+                            ),
                           );
                         },
                       );
@@ -537,42 +506,61 @@ class _SimpleChatInterfaceWidgetState extends State<SimpleChatInterfaceWidget> {
                             mainAxisSize: MainAxisSize.max,
                             crossAxisAlignment: CrossAxisAlignment.center,
                             children: [
-                              Container(
-                                width: 56.0,
-                                height: 56.0,
-                                decoration: BoxDecoration(
-                                  color: Colors.green,
-                                  boxShadow: [
-                                    BoxShadow(
-                                      blurRadius: 8.0,
-                                      color: Color(0x554CAF50),
-                                      offset: Offset(
-                                        0.0,
-                                        3.0,
-                                      ),
-                                    )
-                                  ],
-                                  shape: BoxShape.circle,
-                                ),
-                                child: Align(
-                                  alignment: AlignmentDirectional(0.0, 0.0),
-                                  child: InkWell(
-                                    splashColor: Colors.transparent,
-                                    focusColor: Colors.transparent,
-                                    hoverColor: Colors.transparent,
-                                    highlightColor: Colors.transparent,
-                                    onTap: () async {
-                                      _model.speechtoText12 =
-                                          await actions.speechToText();
-                                      _model.sttResul = _model.speechtoText12!;
-                                      safeSetState(() {});
+                              InkWell(
+                                splashColor: Colors.transparent,
+                                focusColor: Colors.transparent,
+                                hoverColor: Colors.transparent,
+                                highlightColor: Colors.transparent,
+                                onTap: () async {
+                                  _model.recognizedText =
+                                      await actions.speechToText();
+                                  _model.chatInputText = _model.recognizedText!;
+                                  safeSetState(() {});
 
-                                      safeSetState(() {});
-                                    },
-                                    child: Icon(
-                                      Icons.mic_rounded,
-                                      color: Colors.white,
-                                      size: 30.0,
+                                  safeSetState(() {});
+                                },
+                                child: Container(
+                                  width: 56.0,
+                                  height: 56.0,
+                                  decoration: BoxDecoration(
+                                    color: Colors.green,
+                                    boxShadow: [
+                                      BoxShadow(
+                                        blurRadius: 8.0,
+                                        color: Color(0x554CAF50),
+                                        offset: Offset(
+                                          0.0,
+                                          3.0,
+                                        ),
+                                      )
+                                    ],
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: Align(
+                                    alignment: AlignmentDirectional(0.0, 0.0),
+                                    child: InkWell(
+                                      splashColor: Colors.transparent,
+                                      focusColor: Colors.transparent,
+                                      hoverColor: Colors.transparent,
+                                      highlightColor: Colors.transparent,
+                                      onTap: () async {
+                                        _model.isListening = true;
+                                        safeSetState(() {});
+                                        _model.recognizedText1 =
+                                            await actions.speechToText();
+                                        _model.chatInputText =
+                                            _model.recognizedText!;
+                                        safeSetState(() {});
+                                        _model.isListening = false;
+                                        safeSetState(() {});
+
+                                        safeSetState(() {});
+                                      },
+                                      child: Icon(
+                                        Icons.mic_rounded,
+                                        color: Colors.white,
+                                        size: 30.0,
+                                      ),
                                     ),
                                   ),
                                 ),
@@ -588,7 +576,7 @@ class _SimpleChatInterfaceWidgetState extends State<SimpleChatInterfaceWidget> {
                                 ),
                                 onPressed: () async {
                                   await actions.textToSpeech(
-                                    '',
+                                    '${_model.airesponseeC}${_model.airesponsee}',
                                   );
                                 },
                               ),
@@ -605,45 +593,52 @@ class _SimpleChatInterfaceWidgetState extends State<SimpleChatInterfaceWidget> {
                                   child: TextFormField(
                                     controller: _model.textController,
                                     focusNode: _model.textFieldFocusNode,
-                                    onFieldSubmitted: (_) async {
-                                      FFAppState()
-                                          .addToChatHistoryyy(ChatMessageStruct(
-                                        createdBy: 'kishan',
-                                        message: _model.textController.text,
-                                      ));
-                                      safeSetState(() {});
-                                      _model.isAILoading = true;
-                                      safeSetState(() {});
-                                      await callAiAgent(
-                                        context: context,
-                                        prompt: _model.textController.text,
-                                        audioUrl: _model.textController.text,
-                                        threadId: isAndroid.toString(),
-                                        agentCloudFunctionName: 'aiagentkrishi',
-                                        provider: 'GOOGLE',
-                                        agentJson:
-                                            '{\"status\":\"LIVE\",\"identifier\":{\"name\":\"aiagentkrishi\",\"key\":\"f5u9x\"},\"name\":\"aiagentkrishi\",\"description\":\"Yeh ek \'Kisan Sahayak\' AI agent hai jo Gemini 2.5 Flash ka use karta hai. Iska kaam kisanon ko fasal (crops), pashupalan (livestock), aur krishi bimaariyon par expert salaah dena hai. Yeh Hindi mein baat karta hai aur voice/text dono support karta hai.\",\"aiModel\":{\"provider\":\"GOOGLE\",\"model\":\"gemini-2.5-flash\",\"parameters\":{\"temperature\":{\"inputValue\":0.65},\"maxTokens\":{\"inputValue\":20480},\"topP\":{\"inputValue\":0.55}},\"messages\":[{\"role\":\"SYSTEM\",\"text\":\"\\\"Aap ek \'Krishi Vaigyanik\' (Agricultural Scientist) hain. Aapka naam \'Kisan Sahayak\' hai.\\n\\nInstructions:\\n\\nHamesha saral aur shuddh Hindi mein jawab dein.\\n\\nSirf Kheti-bari (Agriculture), Mitti (Soil), Mausam, aur Pashupalan (Cattle/Livestock) se jude sawalon ka jawab dein.\\n\\nAgar koi fasal bimaari ke baare mein pooche, toh jaivik (organic) aur sahi dawai dono batayein.\\n\\nAgar user faltu ya gair-krishi sawal pooche (politics, movies), toh politely mana kar dein aur kahein: \'Main sirf kisanon ki madad ke liye hoon.\'\\n\\nJawab ko hamesha Chhote Bullet Points mein dein taaki kisan asani se padh sakein.\\\"\"}]},\"requestOptions\":{\"requestTypes\":[\"AUDIO\",\"PLAINTEXT\"]},\"responseOptions\":{\"responseType\":\"PLAINTEXT\"}}',
-                                        responseType: 'PLAINTEXT',
-                                      ).then((generatedText) {
-                                        safeSetState(() => _model
-                                            .aIresponse311 = generatedText);
-                                      });
+                                    onChanged: (_) => EasyDebounce.debounce(
+                                      '_model.textController',
+                                      Duration(milliseconds: 2000),
+                                      () async {
+                                        FFAppState().addToChatMessages(
+                                            ChatMessageStruct(
+                                          timestamp: getCurrentTimestamp,
+                                          message: _model.textController.text,
+                                          createdBy: 'user',
+                                        ));
+                                        safeSetState(() {});
+                                        FFAppState().isLoading = true;
+                                        safeSetState(() {});
+                                        await callAiAgent(
+                                          context: context,
+                                          prompt: _model.textController.text,
+                                          audioUrl: _model.textController.text,
+                                          threadId:
+                                              getCurrentTimestamp.toString(),
+                                          agentCloudFunctionName:
+                                              'aiagentkrishi',
+                                          provider: 'GOOGLE',
+                                          agentJson:
+                                              '{\"status\":\"LIVE\",\"identifier\":{\"name\":\"aiagentkrishi\",\"key\":\"f5u9x\"},\"name\":\"aiagentkrishi\",\"description\":\"Yeh ek \'Kisan Sahayak\' AI agent hai jo Gemini 2.5 Flash ka use karta hai. Iska kaam kisanon ko fasal (crops), pashupalan (livestock), aur krishi bimaariyon par expert salaah dena hai. Yeh Hindi mein baat karta hai aur voice/text dono support karta hai.\",\"aiModel\":{\"provider\":\"GOOGLE\",\"model\":\"gemini-2.5-pro\",\"parameters\":{\"temperature\":{\"inputValue\":0.9},\"maxTokens\":{\"inputValue\":23753},\"topP\":{\"inputValue\":0.5}},\"messages\":[{\"role\":\"SYSTEM\",\"text\":\"\\\"Aap ek \'Krishi Vaigyanik\' (Agricultural Scientist) hain. Aapka naam \'Kisan Sahayak\' hai.\\n\\nInstructions:\\n\\nHamesha saral aur shuddh Hindi mein jawab dein.\\n\\nSirf Kheti-bari (Agriculture), Mitti (Soil), Mausam, aur Pashupalan (Cattle/Livestock) se jude sawalon ka jawab dein.\\n\\nAgar koi fasal bimaari ke baare mein pooche, toh jaivik (organic) aur sahi dawai dono batayein.\\n\\nAgar user faltu ya gair-krishi sawal pooche (politics, movies), toh politely mana kar dein aur kahein: \'Main sirf kisanon ki madad ke liye hoon.\'\\n\\nJawab ko hamesha Chhote Bullet Points mein dein taaki kisan asani se padh sakein.\\\"\"}]},\"requestOptions\":{\"requestTypes\":[\"PLAINTEXT\",\"AUDIO\"]},\"responseOptions\":{\"responseType\":\"PLAINTEXT\"}}',
+                                          responseType: 'PLAINTEXT',
+                                        ).then((generatedText) {
+                                          safeSetState(() => _model
+                                              .airesponseeC = generatedText);
+                                        });
 
-                                      FFAppState()
-                                          .addToChatHistoryyy(ChatMessageStruct(
-                                        createdBy: 'AI',
-                                        message: _model.aIresponse311,
-                                        timestamp: getCurrentTimestamp,
-                                      ));
-                                      safeSetState(() {});
-                                      _model.isAILoading = false;
-                                      safeSetState(() {});
-                                      safeSetState(() {
-                                        _model.textController?.clear();
-                                      });
+                                        FFAppState().addToChatMessages(
+                                            ChatMessageStruct(
+                                          timestamp: getCurrentTimestamp,
+                                          message: _model.airesponseeC,
+                                          createdBy: 'bot',
+                                        ));
+                                        safeSetState(() {});
+                                        FFAppState().isLoading = false;
+                                        safeSetState(() {});
+                                        safeSetState(() {
+                                          _model.textController?.clear();
+                                        });
 
-                                      safeSetState(() {});
-                                    },
+                                        safeSetState(() {});
+                                      },
+                                    ),
                                     autofocus: false,
                                     obscureText: false,
                                     decoration: InputDecoration(
@@ -755,36 +750,37 @@ class _SimpleChatInterfaceWidgetState extends State<SimpleChatInterfaceWidget> {
                                 ),
                                 onPressed: () async {
                                   FFAppState()
-                                      .addToChatHistoryyy(ChatMessageStruct(
-                                    createdBy: 'kishan',
+                                      .addToChatMessages(ChatMessageStruct(
+                                    timestamp: getCurrentTimestamp,
                                     message: _model.textController.text,
+                                    createdBy: 'user',
                                   ));
                                   safeSetState(() {});
-                                  _model.isAILoading = true;
+                                  FFAppState().isLoading = true;
                                   safeSetState(() {});
                                   await callAiAgent(
                                     context: context,
                                     prompt: _model.textController.text,
                                     audioUrl: _model.textController.text,
-                                    threadId: isAndroid.toString(),
+                                    threadId: getCurrentTimestamp.toString(),
                                     agentCloudFunctionName: 'aiagentkrishi',
                                     provider: 'GOOGLE',
                                     agentJson:
-                                        '{\"status\":\"LIVE\",\"identifier\":{\"name\":\"aiagentkrishi\",\"key\":\"f5u9x\"},\"name\":\"aiagentkrishi\",\"description\":\"Yeh ek \'Kisan Sahayak\' AI agent hai jo Gemini 2.5 Flash ka use karta hai. Iska kaam kisanon ko fasal (crops), pashupalan (livestock), aur krishi bimaariyon par expert salaah dena hai. Yeh Hindi mein baat karta hai aur voice/text dono support karta hai.\",\"aiModel\":{\"provider\":\"GOOGLE\",\"model\":\"gemini-2.5-flash\",\"parameters\":{\"temperature\":{\"inputValue\":0.65},\"maxTokens\":{\"inputValue\":20480},\"topP\":{\"inputValue\":0.55}},\"messages\":[{\"role\":\"SYSTEM\",\"text\":\"\\\"Aap ek \'Krishi Vaigyanik\' (Agricultural Scientist) hain. Aapka naam \'Kisan Sahayak\' hai.\\n\\nInstructions:\\n\\nHamesha saral aur shuddh Hindi mein jawab dein.\\n\\nSirf Kheti-bari (Agriculture), Mitti (Soil), Mausam, aur Pashupalan (Cattle/Livestock) se jude sawalon ka jawab dein.\\n\\nAgar koi fasal bimaari ke baare mein pooche, toh jaivik (organic) aur sahi dawai dono batayein.\\n\\nAgar user faltu ya gair-krishi sawal pooche (politics, movies), toh politely mana kar dein aur kahein: \'Main sirf kisanon ki madad ke liye hoon.\'\\n\\nJawab ko hamesha Chhote Bullet Points mein dein taaki kisan asani se padh sakein.\\\"\"}]},\"requestOptions\":{\"requestTypes\":[\"AUDIO\",\"PLAINTEXT\"]},\"responseOptions\":{\"responseType\":\"PLAINTEXT\"}}',
+                                        '{\"status\":\"LIVE\",\"identifier\":{\"name\":\"aiagentkrishi\",\"key\":\"f5u9x\"},\"name\":\"aiagentkrishi\",\"description\":\"Yeh ek \'Kisan Sahayak\' AI agent hai jo Gemini 2.5 Flash ka use karta hai. Iska kaam kisanon ko fasal (crops), pashupalan (livestock), aur krishi bimaariyon par expert salaah dena hai. Yeh Hindi mein baat karta hai aur voice/text dono support karta hai.\",\"aiModel\":{\"provider\":\"GOOGLE\",\"model\":\"gemini-2.5-pro\",\"parameters\":{\"temperature\":{\"inputValue\":0.9},\"maxTokens\":{\"inputValue\":23753},\"topP\":{\"inputValue\":0.5}},\"messages\":[{\"role\":\"SYSTEM\",\"text\":\"\\\"Aap ek \'Krishi Vaigyanik\' (Agricultural Scientist) hain. Aapka naam \'Kisan Sahayak\' hai.\\n\\nInstructions:\\n\\nHamesha saral aur shuddh Hindi mein jawab dein.\\n\\nSirf Kheti-bari (Agriculture), Mitti (Soil), Mausam, aur Pashupalan (Cattle/Livestock) se jude sawalon ka jawab dein.\\n\\nAgar koi fasal bimaari ke baare mein pooche, toh jaivik (organic) aur sahi dawai dono batayein.\\n\\nAgar user faltu ya gair-krishi sawal pooche (politics, movies), toh politely mana kar dein aur kahein: \'Main sirf kisanon ki madad ke liye hoon.\'\\n\\nJawab ko hamesha Chhote Bullet Points mein dein taaki kisan asani se padh sakein.\\\"\"}]},\"requestOptions\":{\"requestTypes\":[\"PLAINTEXT\",\"AUDIO\"]},\"responseOptions\":{\"responseType\":\"PLAINTEXT\"}}',
                                     responseType: 'PLAINTEXT',
                                   ).then((generatedText) {
                                     safeSetState(() =>
-                                        _model.aIresponse3 = generatedText);
+                                        _model.airesponsee = generatedText);
                                   });
 
                                   FFAppState()
-                                      .addToChatHistoryyy(ChatMessageStruct(
-                                    createdBy: 'AI',
-                                    message: _model.aIresponse3,
+                                      .addToChatMessages(ChatMessageStruct(
                                     timestamp: getCurrentTimestamp,
+                                    message: _model.airesponsee,
+                                    createdBy: 'bot',
                                   ));
                                   safeSetState(() {});
-                                  _model.isAILoading = false;
+                                  FFAppState().isLoading = false;
                                   safeSetState(() {});
                                   safeSetState(() {
                                     _model.textController?.clear();

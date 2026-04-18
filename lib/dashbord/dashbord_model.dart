@@ -1,10 +1,10 @@
 import '/backend/api_requests/api_calls.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/index.dart';
-import 'farmerfriendly_widget.dart' show FarmerfriendlyWidget;
+import 'dashbord_widget.dart' show DashbordWidget;
 import 'package:flutter/material.dart';
 
-class FarmerfriendlyModel extends FlutterFlowModel<FarmerfriendlyWidget> {
+class DashbordModel extends FlutterFlowModel<DashbordWidget> {
   ///  Local state fields for this page.
 
   dynamic weatherData;
@@ -13,10 +13,8 @@ class FarmerfriendlyModel extends FlutterFlowModel<FarmerfriendlyWidget> {
 
   ///  State fields for stateful widgets in this page.
 
-  // Stores action output result for [Backend Call - API (Weather API)] action in farmerfriendly widget.
+  // Stores action output result for [Backend Call - API (Weather API)] action in dashbord widget.
   ApiCallResponse? apiResulttuf;
-  // Stores action output result for [Backend Call - API (Weather API)] action in Text widget.
-  ApiCallResponse? apiResult4mfscan;
 
   @override
   void initState(BuildContext context) {}

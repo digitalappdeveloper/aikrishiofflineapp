@@ -12,8 +12,12 @@
 -dontwarn com.fasterxml.jackson.databind.**
 -dontwarn com.google.auto.value.**
 -keep class org.xmlpull.v1.** { *; }
+# TensorFlow Lite classes ko delete hone se bachane ke liye
+-keep class org.tensorflow.lite.** { *; }
+-keep class org.tensorflow.lite.gpu.** { *; }
 
+# Agar aap GPU use kar rahe hain toh ye zaruri hai
+-dontwarn org.tensorflow.lite.gpu.**
 
-
-
-
+# TFLite V2/V3 packages ke liye
+-keep class sq.flutter.tflite.** { *; }

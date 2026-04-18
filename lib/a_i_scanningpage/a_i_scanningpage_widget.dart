@@ -94,7 +94,7 @@ class _AIScanningpageWidgetState extends State<AIScanningpageWidget>
                     hoverColor: Colors.transparent,
                     highlightColor: Colors.transparent,
                     onTap: () async {
-                      context.pushNamed(FarmerfriendlyWidget.routeName);
+                      context.pushNamed(DashbordWidget.routeName);
                     },
                     child: Container(
                       width: 36.0,

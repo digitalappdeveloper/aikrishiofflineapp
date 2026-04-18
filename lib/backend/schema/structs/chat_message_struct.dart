@@ -1,11 +1,12 @@
 // ignore_for_file: unnecessary_getters_setters
 
-import '/backend/schema/util/schema_util.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
-import 'index.dart';
+import '/backend/schema/util/firestore_util.dart';
+
 import '/flutter_flow/flutter_flow_util.dart';
 
-class ChatMessageStruct extends BaseStruct {
+class ChatMessageStruct extends FFFirebaseStruct {
   ChatMessageStruct({
     String? text,
     String? sender,
@@ -13,12 +14,14 @@ class ChatMessageStruct extends BaseStruct {
     bool? isAudio,
     String? message,
     String? createdBy,
+    FirestoreUtilData firestoreUtilData = const FirestoreUtilData(),
   })  : _text = text,
         _sender = sender,
         _timestamp = timestamp,
         _isAudio = isAudio,
         _message = message,
-        _createdBy = createdBy;
+        _createdBy = createdBy,
+        super(firestoreUtilData);
 
   // "text" field.
   String? _text;
@@ -173,6 +176,10 @@ ChatMessageStruct createChatMessageStruct({
   bool? isAudio,
   String? message,
   String? createdBy,
+  Map<String, dynamic> fieldValues = const {},
+  bool clearUnsetFields = true,
+  bool create = false,
+  bool delete = false,
 }) =>
     ChatMessageStruct(
       text: text,
@@ -181,4 +188,72 @@ ChatMessageStruct createChatMessageStruct({
       isAudio: isAudio,
       message: message,
       createdBy: createdBy,
+      firestoreUtilData: FirestoreUtilData(
+        clearUnsetFields: clearUnsetFields,
+        create: create,
+        delete: delete,
+        fieldValues: fieldValues,
+      ),
     );
+
+ChatMessageStruct? updateChatMessageStruct(
+  ChatMessageStruct? chatMessage, {
+  bool clearUnsetFields = true,
+  bool create = false,
+}) =>
+    chatMessage
+      ?..firestoreUtilData = FirestoreUtilData(
+        clearUnsetFields: clearUnsetFields,
+        create: create,
+      );
+
+void addChatMessageStructData(
+  Map<String, dynamic> firestoreData,
+  ChatMessageStruct? chatMessage,
+  String fieldName, [
+  bool forFieldValue = false,
+]) {
+  firestoreData.remove(fieldName);
+  if (chatMessage == null) {
+    return;
+  }
+  if (chatMessage.firestoreUtilData.delete) {
+    firestoreData[fieldName] = FieldValue.delete();
+    return;
+  }
+  final clearFields =
+      !forFieldValue && chatMessage.firestoreUtilData.clearUnsetFields;
+  if (clearFields) {
+    firestoreData[fieldName] = <String, dynamic>{};
+  }
+  final chatMessageData =
+      getChatMessageFirestoreData(chatMessage, forFieldValue);
+  final nestedData =
+      chatMessageData.map((k, v) => MapEntry('$fieldName.$k', v));
+
+  final mergeFields = chatMessage.firestoreUtilData.create || clearFields;
+  firestoreData
+      .addAll(mergeFields ? mergeNestedFields(nestedData) : nestedData);
+}
+
+Map<String, dynamic> getChatMessageFirestoreData(
+  ChatMessageStruct? chatMessage, [
+  bool forFieldValue = false,
+]) {
+  if (chatMessage == null) {
+    return {};
+  }
+  final firestoreData = mapToFirestore(chatMessage.toMap());
+
+  // Add any Firestore field values
+  mapToFirestore(chatMessage.firestoreUtilData.fieldValues)
+      .forEach((k, v) => firestoreData[k] = v);
+
+  return forFieldValue ? mergeNestedFields(firestoreData) : firestoreData;
+}
+
+List<Map<String, dynamic>> getChatMessageListFirestoreData(
+  List<ChatMessageStruct>? chatMessages,
+) =>
+    chatMessages?.map((e) => getChatMessageFirestoreData(e, true)).toList() ??
+    [];

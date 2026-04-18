@@ -2,7 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
+import '/backend/backend.dart';
 import '/backend/schema/structs/index.dart';
 
 import '/flutter_flow/flutter_flow_util.dart';
@@ -40,12 +40,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
               builder: (context) => Container(
                 color: Colors.transparent,
                 child: Image.asset(
-                  'assets/images/Gemini_Generated_Image_tz98kbtz98kbtz98.png',
+                  'assets/images/ChatGPT_Image_Apr_18,_2026,_11_50_47_AM.png',
                   fit: BoxFit.fill,
                 ),
               ),
             )
-          : FarmerfriendlyWidget(),
+          : DashbordWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -55,12 +55,12 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
                   builder: (context) => Container(
                     color: Colors.transparent,
                     child: Image.asset(
-                      'assets/images/Gemini_Generated_Image_tz98kbtz98kbtz98.png',
+                      'assets/images/ChatGPT_Image_Apr_18,_2026,_11_50_47_AM.png',
                       fit: BoxFit.fill,
                     ),
                   ),
                 )
-              : FarmerfriendlyWidget(),
+              : DashbordWidget(),
         ),
         FFRoute(
           name: HomePageWidget.routeName,
@@ -68,34 +68,44 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => HomePageWidget(),
         ),
         FFRoute(
-          name: MarketRateslistpageWidget.routeName,
-          path: MarketRateslistpageWidget.routePath,
-          builder: (context, params) => MarketRateslistpageWidget(),
+          name: DashbordWidget.routeName,
+          path: DashbordWidget.routePath,
+          builder: (context, params) => DashbordWidget(),
         ),
         FFRoute(
-          name: FarmerfriendlyWidget.routeName,
-          path: FarmerfriendlyWidget.routePath,
-          builder: (context, params) => FarmerfriendlyWidget(),
+          name: GovernmentSchemesduplicateWidget.routeName,
+          path: GovernmentSchemesduplicateWidget.routePath,
+          builder: (context, params) => GovernmentSchemesduplicateWidget(),
         ),
         FFRoute(
-          name: CameraInterfaceforplanWidget.routeName,
-          path: CameraInterfaceforplanWidget.routePath,
-          builder: (context, params) => CameraInterfaceforplanWidget(),
-        ),
-        FFRoute(
-          name: GovernmentSchemesWidget.routeName,
-          path: GovernmentSchemesWidget.routePath,
-          builder: (context, params) => GovernmentSchemesWidget(),
-        ),
-        FFRoute(
-          name: SimpleChatInterfaceWidget.routeName,
-          path: SimpleChatInterfaceWidget.routePath,
-          builder: (context, params) => SimpleChatInterfaceWidget(),
+          name: ChatWidget.routeName,
+          path: ChatWidget.routePath,
+          builder: (context, params) => ChatWidget(),
         ),
         FFRoute(
           name: AIScanningpageWidget.routeName,
           path: AIScanningpageWidget.routePath,
           builder: (context, params) => AIScanningpageWidget(),
+        ),
+        FFRoute(
+          name: ScannerWidget.routeName,
+          path: ScannerWidget.routePath,
+          builder: (context, params) => ScannerWidget(),
+        ),
+        FFRoute(
+          name: MandibhavduplicateWidget.routeName,
+          path: MandibhavduplicateWidget.routePath,
+          builder: (context, params) => MandibhavduplicateWidget(),
+        ),
+        FFRoute(
+          name: MandibhavWidget.routeName,
+          path: MandibhavWidget.routePath,
+          builder: (context, params) => MandibhavWidget(),
+        ),
+        FFRoute(
+          name: SakariyojnaWidget.routeName,
+          path: SakariyojnaWidget.routePath,
+          builder: (context, params) => SakariyojnaWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );
@@ -167,6 +177,7 @@ class FFParameters {
     String paramName,
     ParamType type, {
     bool isList = false,
+    List<String>? collectionNamePath,
     StructBuilder<T>? structBuilder,
   }) {
     if (futureParamValues.containsKey(paramName)) {
@@ -185,6 +196,7 @@ class FFParameters {
       param,
       type,
       isList,
+      collectionNamePath: collectionNamePath,
       structBuilder: structBuilder,
     );
   }
